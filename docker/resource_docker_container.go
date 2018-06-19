@@ -437,6 +437,12 @@ func resourceDockerContainer() *schema.Resource {
 							ForceNew: true,
 							Default:  false,
 						},
+						"writeable": &schema.Schema{
+							Type:     schema.TypeBool,
+							Optional: true,
+							ForceNew: true,
+							Default:  false,
+						},
 					},
 				},
 			},

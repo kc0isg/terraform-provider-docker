@@ -223,14 +223,26 @@ func resourceDockerContainerCreate(d *schema.ResourceData, meta interface{}) err
 			content := upload.(map[string]interface{})["content"].(string)
 			file := upload.(map[string]interface{})["file"].(string)
 			executable := upload.(map[string]interface{})["executable"].(bool)
+			writeable := upload.(map[string]interface{})["writeable"].(bool)
 
 			buf := new(bytes.Buffer)
 			tw := tar.NewWriter(buf)
 			if executable {
-				mode = 0744
+				if writeable {
+					mode = 0766
+
+				} else {
+					mode = 0744
+				}
 			} else {
-				mode = 0644
+				if writeable {
+					mode = 0666
+
+				} else {
+					mode = 0644
+				}
 			}
+
 			hdr := &tar.Header{
 				Name: file,
 				Mode: mode,

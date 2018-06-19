@@ -172,6 +172,9 @@ Each `upload` supports the following
 * `executable` - (Optional, bool) If true, the file will be uploaded with user
   executable permission.
   Defaults to false.
+* `writeable` - (Optional, bool) If true, the file will be uploaded with write 
+  permissions for all users.
+  Defaults to false.
 
 <a id="devices"></a>
 ### Devices
